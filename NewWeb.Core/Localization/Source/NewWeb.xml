@@ -77,6 +77,7 @@
     <text name="Edit">Edit</text>
     <text name="Delete">Delete</text>
 
-
+    <text name="Task List" value="Task List"/>
+    <text name="Backend Task" value="Backend Task"/>
   </texts>
 </localizationDictionary>
