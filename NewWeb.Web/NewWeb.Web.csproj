@@ -47,9 +47,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-	<AutoGenerateBindingRedirects>True</AutoGenerateBindingRedirects>
-	<GenerateBindingRedirectsOutputType>true</GenerateBindingRedirectsOutputType>
-  </PropertyGroup>  
+    <AutoGenerateBindingRedirects>True</AutoGenerateBindingRedirects>
+    <GenerateBindingRedirectsOutputType>true</GenerateBindingRedirectsOutputType>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Abp, Version=3.7.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Abp.3.7.2\lib\netstandard2.0\Abp.dll</HintPath>
@@ -419,6 +419,12 @@
     </Reference>
     <Reference Include="WebGrease, Version=1.6.5135.21930, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="X.PagedList, Version=7.5.0.0, Culture=neutral, PublicKeyToken=00b6c4f97602e5e8, processorArchitecture=MSIL">
+      <HintPath>..\packages\X.PagedList.7.5.0\lib\net461\X.PagedList.dll</HintPath>
+    </Reference>
+    <Reference Include="X.PagedList.Mvc, Version=7.5.0.0, Culture=neutral, PublicKeyToken=c6e0b5b21f916f4f, processorArchitecture=MSIL">
+      <HintPath>..\packages\X.PagedList.Mvc.7.5.0\lib\net461\X.PagedList.Mvc.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -2661,6 +2667,7 @@
     <Content Include="Content\toastr.less" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -2706,6 +2713,7 @@
     <Content Include="Views\Roles\_EditRoleModal.js" />
     <Content Include="Views\Shared\_Layout.css" />
     <Content Include="Views\Shared\_Layout.js" />
+    <Content Include="Views\Tasks\index.js" />
     <Content Include="Views\Tenants\Index.js" />
     <Content Include="Views\Tenants\_EditTenantModal.js" />
     <Content Include="Views\Users\Index.js" />
@@ -2726,9 +2734,11 @@
     <Compile Include="App_Start\Startup.cs" />
     <Compile Include="Controllers\AboutController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BackendTasksController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\Results\ChallengeResult.cs" />
     <Compile Include="Controllers\RolesController.cs" />
+    <Compile Include="Controllers\TasksController.cs" />
     <Compile Include="Controllers\TenantsController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Helpers\HtmlHelpers.cs" />
@@ -2751,6 +2761,7 @@
     <Compile Include="Models\Layout\SideBarUserAreaViewModel.cs" />
     <Compile Include="Models\Roles\EditRoleModalViewModel.cs" />
     <Compile Include="Models\Roles\RoleListViewModel.cs" />
+    <Compile Include="Models\Tasks\IndexViewModel.cs" />
     <Compile Include="Models\Users\EditUserModalViewModel.cs" />
     <Compile Include="Models\Users\UserListViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -2875,6 +2886,12 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
+    <Content Include="Views\Tasks\_CreateTask.cshtml" />
+    <Content Include="Views\Tasks\_CreateTaskPartial.cshtml" />
+    <Content Include="Views\Tasks\_EditTask.cshtml" />
+    <Content Include="Views\Tasks\_List.cshtml" />
+    <Content Include="Views\Tasks\Index.cshtml" />
+    <Content Include="Views\Tasks\PagedList.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -2902,6 +2919,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\BackendTasks\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />

@@ -8,6 +8,8 @@ namespace NewWeb.Web
         {
             bundles.IgnoreList.Clear();
 
+            BundleTable.EnableOptimizations = false;
+
             bundles.Add(
                 new StyleBundle("~/Bundles/account-vendor/css")
                     .Include("~/fonts/roboto/roboto.css", new CssRewriteUrlTransform())

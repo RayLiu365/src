@@ -3,8 +3,10 @@ using Abp.Authorization;
 using Abp.Authorization.Roles;
 using Abp.Authorization.Users;
 using Abp.AutoMapper;
+using Abp.BackgroundJobs;
 using Abp.Domain.Repositories;
 using Abp.Modules;
+using Castle.MicroKernel.Registration;
 using NewWeb.Authorization.Roles;
 using NewWeb.Authorization.Users;
 using NewWeb.Roles.Dto;
@@ -17,6 +19,8 @@ namespace NewWeb
     {
         public override void PreInitialize()
         {
+            //使用module-zero实现的后台作业存储持久化后台作业到数据库
+            IocManager.Register<IBackgroundJobStore, BackgroundJobStore>();
         }
 
         public override void Initialize()
@@ -39,6 +43,25 @@ namespace NewWeb
                 cfg.CreateMap<CreateUserDto, User>();
                 cfg.CreateMap<CreateUserDto, User>().ForMember(x => x.Roles, opt => opt.Ignore());
             });
+
+            //注册IDtoMapping
+            IocManager.IocContainer.Register(
+                Classes.FromAssembly(Assembly.GetExecutingAssembly())
+                    .IncludeNonPublicTypes()
+                    .BasedOn<IDtoMapping>()
+                    .WithService.Self()
+                    .WithService.DefaultInterfaces()
+                    .LifestyleTransient()
+            );
+
+            //解析依赖，并进行映射规则创建
+            Configuration.Modules.AbpAutoMapper().Configurators.Add(mapper =>
+            {
+                var mappers = IocManager.IocContainer.ResolveAll<IDtoMapping>();
+                foreach (var dtomap in mappers)
+                    dtomap.CreateMapping(mapper);
+            });
+
         }
     }
 }

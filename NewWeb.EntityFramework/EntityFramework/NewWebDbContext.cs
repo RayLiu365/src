@@ -10,6 +10,7 @@ namespace NewWeb.EntityFramework
     public class NewWebDbContext : AbpZeroDbContext<Tenant, Role, User>
     {
         //TODO: Define an IDbSet for your Entities...
+        public IDbSet<NewWeb.Tasks.Task> Tasks { get; set; }
 
         /* NOTE: 
          *   Setting "Default" to base class helps us when working migration commands on Package Manager Console.

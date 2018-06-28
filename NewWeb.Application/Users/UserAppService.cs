@@ -14,6 +14,7 @@ using NewWeb.Authorization.Users;
 using NewWeb.Roles.Dto;
 using NewWeb.Users.Dto;
 using Microsoft.AspNet.Identity;
+using Abp.AutoMapper;
 
 namespace NewWeb.Users
 {
@@ -23,6 +24,7 @@ namespace NewWeb.Users
         private readonly UserManager _userManager;
         private readonly RoleManager _roleManager;
         private readonly IRepository<Role> _roleRepository;
+        private readonly IRepository<User, long> _userRepository;
 
         public UserAppService(
             IRepository<User, long> repository, 
@@ -31,6 +33,7 @@ namespace NewWeb.Users
             RoleManager roleManager)
             : base(repository)
         {
+            _userRepository = repository;
             _userManager = userManager;
             _roleRepository = roleRepository;
             _roleManager = roleManager;
@@ -42,6 +45,15 @@ namespace NewWeb.Users
             var userRoles = await _userManager.GetRolesAsync(user.Id);
             user.Roles = userRoles.Select(ur => ur).ToArray();
             return user;
+        }
+
+        public ListResultDto<UserListDto> GetUsers()
+        {
+            var users = _userRepository.GetAllList();
+
+            return new ListResultDto<UserListDto>(
+                users.MapTo<List<UserListDto>>()
+                );
         }
 
         public override async Task<UserDto> Create(CreateUserDto input)

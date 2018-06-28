@@ -235,8 +235,13 @@
     <Compile Include="Migrations\201803261403237_Upgraded_To_Abp_v3_5.Designer.cs">
       <DependentUpon>201803261403237_Upgraded_To_Abp_v3_5.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201806280121041_Add_Task_Entity.cs" />
+    <Compile Include="Migrations\201806280121041_Add_Task_Entity.Designer.cs">
+      <DependentUpon>201806280121041_Add_Task_Entity.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\AbpZeroDbMigrator.cs" />
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Migrations\SeedData\DefaultTestDataForTask.cs" />
     <Compile Include="NewWebDataModule.cs" />
     <Compile Include="Migrations\SeedData\DefaultEditionsCreator.cs" />
     <Compile Include="Migrations\SeedData\DefaultLanguagesCreator.cs" />
@@ -269,6 +274,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201803261403237_Upgraded_To_Abp_v3_5.resx">
       <DependentUpon>201803261403237_Upgraded_To_Abp_v3_5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806280121041_Add_Task_Entity.resx">
+      <DependentUpon>201806280121041_Add_Task_Entity.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
