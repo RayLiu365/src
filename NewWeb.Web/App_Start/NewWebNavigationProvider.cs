@@ -51,15 +51,15 @@ namespace NewWeb.Web
                 .AddItem(
                     new MenuItemDefinition(
                         PageNames.Tasks,
-                        L("Task List"),
+                        L("TaskList"),
                         url: "Tasks/Index",
                         icon: "list"
                     )
                 )
                 .AddItem(
                     new MenuItemDefinition(
-                        "BackendTask",
-                        L("Backend Task"),
+                        PageNames.BackendTasks,
+                        L("BackendTasks"),
                         url: "BackendTasks/List",
                         icon: "list"
                     )

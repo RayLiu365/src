@@ -8,5 +8,6 @@ namespace NewWeb.Web
         public const string Users = "Users";
         public const string Roles = "Roles";
         public const string Tasks = "Tasks";
+        public const string BackendTasks = "BackendTasks";
     }
 }

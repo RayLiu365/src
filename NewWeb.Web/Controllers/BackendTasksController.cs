@@ -7,7 +7,6 @@ using NewWeb.Users;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace NewWeb.Web.Controllers
@@ -21,15 +20,26 @@ namespace NewWeb.Web.Controllers
         public BackendTasksController(ITaskAppService taskAppService, IUserAppService userAppService)
         {
             _taskAppService = taskAppService;
-            _userAppService = userAppService;
+            _userAppService = userAppService;            
         }
 
         // GET: Task
         public ActionResult List()
         {
-            ViewBag.TaskStateDropdownList = GetTaskStateDropdownList(null);
-            var userList = _userAppService.GetUsers();
-            ViewBag.AssignedPersonId = new SelectList(userList.Items, "Id", "Name");
+            try
+            {
+                Logger.Debug("Start List action");
+                ViewBag.TaskStateDropdownList = GetTaskStateDropdownList(null);
+                var userList = _userAppService.GetUsers();
+                ViewBag.AssignedPersonId = new SelectList(userList.Items, "Id", "Name");
+
+                int countList = userList.Items.Count;
+                Logger.Debug("AssignedPersonId:"+userList.Items[0].Id.ToString()+"  List count is:" + countList.ToString());                
+            }
+            catch(Exception e)
+            {
+                Logger.Error(e.Message);
+            }
             return View();
         }
 
@@ -37,6 +47,7 @@ namespace NewWeb.Web.Controllers
         public JsonResult GetAllTasks(int limit, int offset, string sortfiled, string sortway, string search,
             string status)
         {
+            Logger.Debug("Start GetAllTasks");
             var sort = !string.IsNullOrEmpty(sortfiled) ? string.Format("{0} {1}", sortfiled, sortway) : "";
             TaskState currentState;
             if (!string.IsNullOrEmpty(status))
@@ -56,7 +67,7 @@ namespace NewWeb.Web.Controllers
 
             var pagedTasks = _taskAppService.GetPagedTasks(filter);
 
-
+            Logger.Debug("End GetAllTasks");
             return Json(new { total = pagedTasks.TotalCount, rows = pagedTasks.Items }, JsonRequestBehavior.AllowGet);
         }
 
