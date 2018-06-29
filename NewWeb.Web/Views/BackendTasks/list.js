@@ -106,7 +106,7 @@ var TableInit = function() {
             //alert('You click remove icon, row: ' + JSON.stringify(row));
             //console.log(value, row, index);
 
-            deleteTask(row.Id);
+            deleteTask(row.Id,row.Title);
         }
     };
 
@@ -198,7 +198,7 @@ function createTask() {
 
 function editTask(taskId) {
     abp.ajax({
-        url: "/BackendTasks/edit",
+        url: "../BackendTasks/edit",
             data: { "id": taskId },
             type: "GET",
             dataType: "html"
@@ -212,9 +212,9 @@ function editTask(taskId) {
         });
 }
 
-function deleteTask(taskId) {
+function deleteTask(taskId,taskTitle) {
     abp.message.confirm(
-        "是否删除Id为" + taskId + "的任务信息",
+        "是否删除Id为" + taskId + ",任务名称为" + taskTitle +"的任务信息",
         function(isConfirmed) {
             if (isConfirmed) {
                 taskService.deleteTask(taskId)

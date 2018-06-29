@@ -73,11 +73,12 @@ namespace NewWeb.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public JsonResult Create(CreateTaskInput task)
+        public ActionResult Create(CreateTaskInput task)
         {
             var id = _taskAppService.CreateTask(task);
 
-            return Json(id, JsonRequestBehavior.AllowGet);
+            //return Json(id, JsonRequestBehavior.AllowGet);
+            return RedirectToAction("List");
         }
 
         public PartialViewResult Edit(int id)
@@ -94,15 +95,17 @@ namespace NewWeb.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public JsonResult Edit(UpdateTaskInput updateTaskDto)
+        public ActionResult Edit(UpdateTaskInput updateTaskDto)
         {
             if (ModelState.IsValid)
             {
                 _taskAppService.UpdateTask(updateTaskDto);
 
-                return Json(true, JsonRequestBehavior.AllowGet);
+                //return Json(true, JsonRequestBehavior.AllowGet);
+                return RedirectToAction("List");
             }
-            return Json(false, JsonRequestBehavior.AllowGet);
+            //return Json(false, JsonRequestBehavior.AllowGet);
+            return View(updateTaskDto);
         }
 
         private List<SelectListItem> GetTaskStateDropdownList(TaskState? curState)
