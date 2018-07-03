@@ -44,6 +44,9 @@
     <Reference Include="Abp.Zero.Common, Version=3.7.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Abp.Zero.Common.3.7.2\lib\netstandard2.0\Abp.Zero.Common.dll</HintPath>
     </Reference>
+    <Reference Include="Abp.Zero.Ldap, Version=3.7.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Abp.Zero.Ldap.3.7.2\lib\netstandard2.0\Abp.Zero.Ldap.dll</HintPath>
+    </Reference>
     <Reference Include="Castle.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
       <HintPath>..\packages\Castle.Core.4.2.1\lib\net45\Castle.Core.dll</HintPath>
     </Reference>
@@ -131,6 +134,9 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Data.OracleClient" />
+    <Reference Include="System.DirectoryServices" />
+    <Reference Include="System.DirectoryServices.AccountManagement" />
+    <Reference Include="System.DirectoryServices.Protocols" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.IO.Compression.FileSystem" />
     <Reference Include="System.Linq.Dynamic.Core, Version=0.0.0.0, Culture=neutral, PublicKeyToken=0f07ec44de6ac832, processorArchitecture=MSIL">
@@ -199,6 +205,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MyExternalAuthSource.cs" />
+    <Compile Include="MyLdapAuthenticationSource.cs" />
+    <Compile Include="MyLdapSettings.cs" />
     <Compile Include="NewWebConsts.cs" />
     <Compile Include="NewWebCoreModule.cs" />
     <Compile Include="AppVersionHelper.cs" />
