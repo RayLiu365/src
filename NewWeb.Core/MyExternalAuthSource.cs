@@ -40,6 +40,7 @@ namespace NewWeb
             }
             catch(Exception ex)
             {
+                
                 throw new Exception("Error authenticating user." + ex.Message);
             }
 

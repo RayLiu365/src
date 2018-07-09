@@ -43,7 +43,7 @@ namespace NewWeb
 
                 user.IsEmailConfirmed = true;
                 user.IsActive = false;
-
+                
                 return user;
             }
         }

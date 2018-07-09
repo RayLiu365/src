@@ -54,5 +54,28 @@ namespace NewWeb.Web.Controllers
             };
             return View("_EditUserModal", model);
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(EditUserModalViewModel editUserModalViewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                var input = editUserModalViewModel.User;
+                Users.Dto.UpdateUserDto inputUser = new Users.Dto.UpdateUserDto
+                {
+                    Id = input.Id,
+                    EmailAddress = input.EmailAddress,
+                    IsActive = input.IsActive,
+                    Name = input.Name,
+                    RoleNames = input.Roles,
+                    Surname = input.Surname,
+                    UserName = input.UserName
+                };
+                _userAppService.Update(inputUser);
+            }
+            return View(editUserModalViewModel);
+        }
     }
+
 }
